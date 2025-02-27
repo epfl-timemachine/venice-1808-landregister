@@ -1,12 +1,12 @@
 # 1808 Sommarioni: Data description
 
 # Files:
-* `sommarioni_geometries_<date>.geojson`: the vectorization of Venice's 1808 Napolean cadastral maps saved as GeoJSON polygons. Relate to the text data entries through the `geometry_id` field.
-* `sommarioni_text_data_<date>.json`: the transcribed textual entries of the cadaster's manuscript (called "Sommarioni") with the field `geometry_id` relating the group of geometry from the geometries' GeoJSON file. Some fields have been standardized such as the parcels function and the identification of their owner.
+* `sommarioni_geometries.geojson`: the vectorization of Venice's 1808 Napolean cadastral maps saved as GeoJSON polygons. Relate to the textual data entries through the `geometry_id` field.
+* `sommarioni_text_data.json`: the transcribed textual entries of the cadaster's manuscript (called "Sommarioni") with the field `geometry_id` relating the group of geometry from the geometries' GeoJSON file. Some fields have been standardized such as the parcels function and the identification of their owner.
 
 ## sommarioni_text_data: metadata fields
 - `geometry_id`: a non-null unique integer linking the entry to the group of geometries in the corresponding GeoJSON. 
-- `district`: a non-null standardized string representing the sestiere (district) of the entry. Possible values are  `San Marco`, `Castello`, `Cannaregio`, `San Polo`, `Santa Croce` and `Dorsoduro`.
+- `district`: a non-null standardized string representing the "sestiere" (district) in which the entry belong. Possible values are  `San Marco`, `Castello`, `Cannaregio`, `San Polo`, `Santa Croce` and `Dorsoduro`.
 - `parcel_number`: a nullable string linking the entry to the coressponding cadaster on the map. The name in the original document is `Numero della Mappa`.
 - `sub_parcel_number`: a nullable string used to indicate sub-division of the entry. The name in the original document is `subalterno`.
 - `place`: a non-null string representing the toponym (place) locating the entry. This attribute is written in the original document above the entries in the `Denominazione dei Pezzi di Terra` column.
