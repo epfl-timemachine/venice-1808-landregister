@@ -1,10 +1,11 @@
 # 1808 Sommarioni: Data description
 
 # Files:
-* `sommarioni_geometries.geojson`: the vectorization of Venice's 1808 Napolean cadastral maps saved as GeoJSON polygons. Relate to the textual data entries through the `geometry_id` field.
-* `sommarioni_text_data.json`: the transcribed textual entries of the cadaster's manuscript (called "Sommarioni") with the field `geometry_id` relating the group of geometry from the geometries' GeoJSON file. Some fields have been standardized such as the parcels function and the identification of their owner.
+* `venice_1808_landregisters_geometries.geojson`: the vectorization of Venice's 1808 Napolean cadastral maps saved as GeoJSON polygons. Relate to the textual data entries through the `geometry_id` field.
+* `venice_1808_landregisters_textual_entries.json`: the transcribed textual entries of the cadaster's manuscript (called "Sommarioni") with the field `geometry_id` relating the group of geometry from the geometries' GeoJSON file. Some fields have been standardized such as the parcels function and the identification of their owner.
+* `venice_1808_landregisters_aggregated_data.jpon`: an aggregated version of both aforementioned file in a single JSON file.
 
-## sommarioni_text_data: metadata fields
+## venice_1808_landregisters_textual_entries:
 - `geometry_id`: a non-null unique integer linking the entry to the group of geometries in the corresponding GeoJSON. 
 - `district`: a non-null standardized string representing the "sestiere" (district) in which the entry belong. Possible values are  `San Marco`, `Castello`, `Cannaregio`, `San Polo`, `Santa Croce` and `Dorsoduro`.
 - `parcel_number`: a nullable string linking the entry to the coressponding cadaster on the map. The name in the original document is `Numero della Mappa`.
@@ -18,9 +19,15 @@
 - `ownership_types`: a nullable **list** of standardized strings representing the types of ownership. The possible values are `AFFITO`, `PUBBLICO`, `COMMUNE` and `PROPRIO`. This standardized information stems from the `quality` field.
 - `qualities`: a nullable **list** of standardized strings representing the possible qualities of a parcel. They are 72 possible values. This standardized information stems from the `quality` field.
 
-## sommarioni_geometries: metadata fields
+## venice_1808_landregisters_geometries:
 Only the fields stored in the "properties" sub-dict per GeoJSON object are described, as they are domain dependant metadata, whereas all other fields are standard GeoJSON properties.
 - `id`: non-null string, operational ID attributed to each single geometry, in the format `<type>/<id>`. Multiple geometries may hold the same `id`, it generally means a single parcel with many different kind of geometries (building with a courtyard for instance)
 - `parcel_type`: non-null standardized string, represent the type of the geometry, mainly for display purpose. Possibles values are `building`, `courtyard`, `sottoportico`, `street`, `water`.
 - `parcel_number`: nullable string, refers to the parcel number associated to the current geometry. Matches with the corresponding value from the "sommarioni_text_data" JSON file. 
 - `geometry_id`: nullable integer, an unique identifier grouping all the different geometries to the sommarioni entries they correspond. Matches the values from the corresponding field in the "sommarioni_text_data" JSON file and serve as the key to link both files. Entries without a value for this fields are urban objects drawn on the map that were vectorized without a corresponding description in the registry (for instance, streets and waterways).
+
+
+## venice_1808_landregisters_aggregated_data
+Each of the entries listed in the file holds two fields:
+- `geometries`: list all geometries that fall within the relation between the (potentially multiple) entries of the registries and the different vectorized parcel delimitations. 
+- `text`: list all the entries from the landregister that are related to the geometries listed in the aforementioned file. As there exist vectorized geometries without textual entries (for instance street and body of water delimitation, or confidential properties, such as the Arsenal) this field can be empty.
