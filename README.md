@@ -14,6 +14,18 @@
 - `house_number`: nullable string of the physical door number of the entry, can be multiple numbers in a chain separated by commas. The name in the original document is `Denominazione dei Pezzi di Terra`.
 - `owner`: nullable string denoting the owner of the entry. The family names of this field are transcribed in uppercase, except for the `Cannaregio` sestiere. The name in the original document is `Possessori`.
 - `owner_standardised`: nullable string which is a standardised version of the above string.
+- `owner_standardized_class`: nullable string representing the class of institution present in the owner in the case the current entity is an institution.
+- `owner_wd`: nullable string, holds the entity code of the owner whenever a matching record was found on wikidata.org.
+- `owner_right_of_use`: nullable string, represents the right of use attributed to the owner of the current parcel.
+- `owner_type`: nullable string, represents the type of owner according to 3 possible values: `RELIGIOUS`, `SECULAR`, `ISTITUZIONE PUBBLICA`.
+- `old_entity`: nullable string, whenever in the `owner` field there was some forme of transfer of ownership, this field holds information regarding the current parcel previous owner.
+- `old_entity_standardised`:  nullable string which is a standardised version of the above string.
+- `old_entity_standardized_class`: nullable string, similar to `owner_standardized_class` but in the case of the previous owner.
+- `old_entity_wd`: nullable string, similar to `owner_wd` but in the case of the previous owner.
+- `old_religious_entity_type`: nullable string, very often the previous owner of parcels happens to be a religious type, this field represent the different type of such religious institutions. 
+- `owner_supplementary`: nullable string, holds supplementary information regarding ownership of the current parcel.
+- `old_owner_right_of_use`: nullable string, similar to `owner_right_of_use` but in the case of the previous owner.
+- `old_owner_type`: nullable string, similar to `owner_type` but in the case of the previous owner.
 - `area`: a non-null float value describing the parcel's area in square meters. It is a value computed from the vectorization available in the GeoJSON file.
 - `quality`: a nullable string of the quality of the entry. It describes the type of good from the entry in a more or less systematic way. The name in the original document is `Qualità`.
 - `ownership_types`: a nullable **list** of standardized strings representing the types of ownership. The possible values are `AFFITO`, `PUBBLICO`, `COMMUNE` and `PROPRIO`. This standardized information stems from the `quality` field.
@@ -24,6 +36,7 @@ Only the fields stored in the "properties" sub-dict per GeoJSON object are descr
 - `id`: non-null string, operational ID attributed to each single geometry, in the format `<type>/<id>`. Multiple geometries may hold the same `id`, it generally means a single parcel with many different kind of geometries (building with a courtyard for instance)
 - `parcel_type`: non-null standardized string, represent the type of the geometry, mainly for display purpose. Possibles values are `building`, `courtyard`, `sottoportico`, `street`, `water`.
 - `parcel_number`: nullable string, refers to the parcel number associated to the current geometry. Matches with the corresponding value from the "sommarioni_text_data" JSON file. 
+- `parish_standardized`: nullable string, refers to the adminstrative delimitation of the parish in which the geometries likely falls within. This is a derived data from an interpretation of the parish boundaries as they were thought to be organized in 1740. The appartenance of parcel was computed by checking under which parish boundaries most of a parcel's geometry fell under.
 - `geometry_id`: nullable integer, an unique identifier grouping all the different geometries to the sommarioni entries they correspond. Matches the values from the corresponding field in the "sommarioni_text_data" JSON file and serve as the key to link both files. Entries without a value for this fields are urban objects drawn on the map that were vectorized without a corresponding description in the registry (for instance, streets and waterways).
 
 
