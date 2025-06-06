@@ -13,13 +13,13 @@
 - `place`: a non-null string representing the toponym (place) locating the entry. This attribute is written in the original document above the entries in the `Denominazione dei Pezzi di Terra` column.
 - `house_number`: nullable string of the physical door number of the entry, can be multiple numbers in a chain separated by commas. The name in the original document is `Denominazione dei Pezzi di Terra`.
 - `owner_transcription`: nullable string denoting the owner of the entry. The name in the original document is `Possessori`.
-- `owner_standardised`: nullable string which is a standardised version of the above string.
+- `owner_standardised`: nullable string which is a standardised version of the `owner_transcription`.
 - `owner_standardized_class`: nullable string representing the class of institution present in the owner in the case the current entity is an institution.
 - `owner_wd`: nullable string, holds the entity code of the owner whenever a matching record was found on wikidata.org.
 - `owner_right_of_use`: nullable string, represents the right of use attributed to the owner of the current parcel.
 - `owner_type`: nullable string, represents the type of owner according to 3 possible values: `RELIGIOUS`, `SECULAR`, `ISTITUZIONE PUBBLICA`. An english-translated version of this field is also available under the name `owner_type_en`. 
 - `old_entity`: nullable string, whenever in the `owner` field there was some forme of transfer of ownership, this field holds information regarding the current parcel previous owner.
-- `old_entity_standardised`:  nullable string which is a standardised version of the above string.
+- `old_entity_standardised`:  nullable string which is a standardised version of the `old_entity` field.
 - `old_entity_standardized_class`: nullable string, similar to `owner_standardized_class` but in the case of the previous owner.
 - `old_entity_wd`: nullable string, similar to `owner_wd` but in the case of the previous owner.
 - `old_religious_entity_type`: nullable string, very often the previous owner of parcels happens to be a religious type, this field represent the different type of such religious institutions. An english-translated version of this field is also available under the name `old_religious_entity_type_en`. 
@@ -28,7 +28,7 @@
 - `old_owner_type`: nullable string, similar to `owner_type` but in the case of the previous owner. 
 - `quality`: a nullable string of the quality of the entry. It describes the type of good from the entry in a more or less systematic way. The name in the original document is `Qualità`. 
 - `page`: a non-null string containing the reference to the archival document page from which the transcription of the current entry has been made.
-- `ownership_types`: a nullable **list** of standardized strings representing the types of ownership. The possible values are `AFFITO`, `PUBBLICO`, `COMMUNE` and `PROPRIO`. This standardized information stems from the `quality` field. An english-translated version of this field is also available under the name `ownership_types_en`
+- `ownership_types`: a nullable **list** of standardized strings representing the types of ownership. The possible values are `AFFITTO`, `PUBBLICO`, `COMUNE` and `PROPRIO`. This standardized information stems from the `quality` field. An english-translated version of this field is also available under the name `ownership_types_en`
 - `qualities`: a nullable **list** of standardized strings representing the possible qualities of a parcel. This standardized information stems from the `quality` field. An english-translated version of this field is also available under the name `qualities_en`
 
 ## venice_1808_landregister_geometries:
