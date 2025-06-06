@@ -12,7 +12,7 @@
 - `sub_parcel_number`: a nullable string used to indicate sub-division of the entry. The name in the original document is `subalterno`.
 - `place`: a non-null string representing the toponym (place) locating the entry. This attribute is written in the original document above the entries in the `Denominazione dei Pezzi di Terra` column.
 - `house_number`: nullable string of the physical door number of the entry, can be multiple numbers in a chain separated by commas. The name in the original document is `Denominazione dei Pezzi di Terra`.
-- `owner_transcription`: nullable string denoting the owner of the entry. The family names of this field are transcribed in uppercase, except for the `Cannaregio` sestiere. The name in the original document is `Possessori`.
+- `owner_transcription`: nullable string denoting the owner of the entry. The name in the original document is `Possessori`.
 - `owner_standardised`: nullable string which is a standardised version of the above string.
 - `owner_standardized_class`: nullable string representing the class of institution present in the owner in the case the current entity is an institution.
 - `owner_wd`: nullable string, holds the entity code of the owner whenever a matching record was found on wikidata.org.
