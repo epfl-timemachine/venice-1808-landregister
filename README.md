@@ -29,7 +29,7 @@
 - `old_owner_right_of_use`: nullable string, similar to `owner_right_of_use` but in the case of the previous owner. An english-translated version of this field is also available under the name `old_owner_right_of_use_en`. 
 - `old_owner_type`: nullable string, similar to `owner_type` but in the case of the previous owner. 
 - `quality`: a nullable string of the quality of the entry. It describes the type of good from the entry in a more or less systematic way. The name in the original document is `Qualità`. 
-- `page`: a non-null string containing the reference to the archival document page from which the transcription of the current entry has been made.
+- `citation`: a non-null string containing the reference to the archival document page from which the transcription of the current entry has been made.
 - `ownership_types`: a nullable **list** of standardized strings representing the types of ownership. The possible values are `AFFITTO`, `PUBBLICO`, `COMUNE` and `PROPRIO`. This standardized information stems from the `quality` field. An english-translated version of this field is also available under the name `ownership_types_en`
 - `qualities`: a nullable **list** of standardized strings representing the possible qualities of a parcel. This standardized information stems from the `quality` field. An english-translated version of this field is also available under the name `qualities_en`
 
