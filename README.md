@@ -4,7 +4,7 @@
 * `venice_1808_landregister_geometries.geojson`: the vectorization of Venice's 1808 Napolean cadastral maps saved as GeoJSON polygons. Relate to the textual data entries through the `geometry_id` field.
 * `venice_1808_landregister_textual_entries.json`: the transcribed textual entries of the cadaster's manuscript (called "Sommarioni") with the field `geometry_id` relating the group of geometry from the geometries' GeoJSON file. Some fields have been standardized such as the parcels function and the identification of their owner.
 * `venice_1808_landregister_standardised_people.json`: disambiguation of the poeple mentionned in the "owner" field from the registries entries into its own data set.
-* `venice_1808_landregister_aggregated_data.jpon`: an aggregated version of the aforementioned files in a single JSON file.
+* `venice_1808_landregister_aggregated_data.json`: an aggregated version of the aforementioned files in a single JSON file.
 
 ## venice_1808_landregister_textual_entries:
 - `geometry_id`: a non-null unique integer linking the entry to the group of geometries in the corresponding GeoJSON.
