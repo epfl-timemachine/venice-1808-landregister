@@ -5,6 +5,7 @@
 * `venice_1808_landregister_textual_entries.json`: the transcribed textual entries of the cadaster's manuscript (called "Sommarioni") with the field `geometry_id` relating the group of geometry from the geometries' GeoJSON file. Some fields have been standardized such as the parcels function and the identification of their owner.
 * `venice_1808_landregister_standardised_people.json`: disambiguation of the poeple mentionned in the "owner" field from the registries entries into its own data set.
 * `venice_1808_landregister_aggregated_data.jpon`: an aggregated version of the aforementioned files in a single JSON file.
+* `venice_1808_landregister_landregister_merge_log.json`: during the disambiguation of people that resulted in the file `venice_1808_landregister_standardised_people.json`, some specific heuristic were used in order to merge multiple mentions of a person into a single object. The file contains all non-unique people that were merged along with the reason that triggered the merge encoded in a bit-vector.
 
 ## venice_1808_landregister_textual_entries:
 - `geometry_id`: a non-null unique integer linking the entry to the group of geometries in the corresponding GeoJSON.
@@ -63,6 +64,20 @@ Each of the entries listed in the file holds two fields:
 - `geometries`: list all geometries that fall within the relation between the (potentially multiple) entries of the registries and the different vectorized parcel delimitations. The fields and contained data from the object in this listing are the same as the ones from `venice_1808_landregister_geometries` with the omission of `geometries_id` (used to do the join) and `parcel_number` (already present in the text entries).
 - `text`: list all the entries from the landregister that are related to the geometries listed in the aforementioned file. As there exist vectorized geometries without textual entries (for instance street network, canals, or parcels that for historical reasons have not been described such as the military area of the Arsenal) this field can be empty. The fields and contained data from the object in this listing are the same as the ones from `venice_1808_landregister_textual_entries` with the omission of `geometries_id`.
 - `people`: list all the disambiguated persons that are mentioned to be in possession of the current parcel group. As a single persone can be owner of a multitude of parcels, duplicates object occur in this file contrarily in `venice_1808_landregister_standardised_people.json`. The `uid` field uniquely identifies the person in the dataset. All fields in the people objects are the same as the ones from `venice_1808_landregister_standardised_people.json` with the omission of `parcel_ids`.
+
+## venice_1808_landregister_landregister_merge_log.json
+- `uid` this is the ID of the person’s copy. This ID is built on top of the original person uid in the people_Sommarioni_dataset.xlsx. The uid of a copy for ID 123 will always start with 123_: e.g. two copies of a Person with uid 123 will have IDs 123_1 and 123_2, respectively.
+- `owner_uid`: this is the owner’s ID that was merged into the unique person object.
+- `parcel_id`: this is the unique ID of the parcel(unique in the `venice_1808_landregister_textual_entries`)
+where this person appears as the owner or one of the owners.
+- `suddetto`: if this column is `true`, this person was merged because of the mention of "SUDDETTO" (meaning "as above").
+- `same_father`: if this column is `true`, mentions of this person were merged because of identical father being mentionned.
+- `same_mother`: if this column is `true`, mentions of this person were merged because of identical mother being mentionned.
+- `same_siblings`: if this column is `true`, mentions of this person were merged because of identical siblings being mentionned.
+- `same_husband`: if this column is `true`, mentions of this person were merged because of identical husband being mentionned.
+- `same_title`: if this column is `true`, mentions of this person were merged because of identical title being mentionned.
+- `same_other_note`: if this column is `true`, mentions of this person were merged because of identical other notes.
+- `same_name_only`: if this column is `true`, mentions of this person were merged only because of identical names.
 
 ## scripts
 A folder contains a set of scripts that were used to assist in the cleaning, standardization, and preparation of the final dataset. The data processing workflow involved extensive manual interventions and the use of intermediate working files. As a result, the notebooks included here are provided for documentation purposes only. They are intended to illustrate the types of data transformations applied during the project, and are not designed to be executed sequentially to reproduce the current version of the dataset.
